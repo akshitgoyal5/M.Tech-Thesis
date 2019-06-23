@@ -1,0 +1,95 @@
+\documentclass[sigconf,10pt]{acmart}
+\settopmatter{printacmref=false}
+
+\input{macros}
+
+\pagenumbering{arabic}
+
+\copyrightyear{2020}
+\acmYear{2020}
+\setcopyright{acmcopyright}
+\acmConference[SIGMOD '20]{ACM SIGMOD '20: ACM International Conference on Management of Data}{June 14--19, 2020}{Portland, Oregon, USA}
+\acmPrice{15.00}
+\acmDOI{10.1145/1122445.1122456}
+\acmISBN{978-1-4503-9999-9/18/06}
+
+\begin{document}
+
+\title{Mining Top-$k$ Correlated Subgraphs in a Large Graph}
+
+\author{ACM SIGMOD Submission ID XXX}
+
+%\author{Arijit Khan} \affiliation{\institution{Nanyang Technological
+%University}
+%}
+%\email{arijit.khan@ntu.edu.sg}
+%
+%\author{Arneish Prateek} \affiliation{\institution{Indian Institute of
+%Technology Delhi, India}
+%}
+%\email{ch1140786@iitd.ac.in}
+%
+%\author{Sayan Ranu} \affiliation{\institution{Indian Institute of Technology
+%Delhi, India}
+%}
+%\email{sayanranu@iitd.ac.in}
+%
+%\author{Akshit Goyal} \affiliation{\institution{Indian Institute of Technology
+%Delhi, India}
+%}
+%\email{cs5140278@iitd.ac.in}
+
+
+\vspace{-4mm}
+\begin{abstract}
+Mining of correlated patterns, that represent an important class of
+regularities, has become increasingly important in data management and
+analytics. Surprisingly, the problem of correlated subgraphs mining from a
+single, large graph has received little attention. We investigate a novel and
+critical graph mining problem, called correlated subgraphs mining, which is
+defined as a pair of subgraph patterns that frequently co-occur in proximity
+within a single graph.
+
+Correlated subgraphs are different from frequent subgraphs due to the
+flexibility in which the constituent subgraph instances are connected, thus the
+existing frequent subgraphs mining algorithms cannot be directly applied.
+Furthermore, correlation computation between two subgraph patterns require
+enumerating and finding distances between every pair of subgraph instances of
+both these patterns --- which are both memory intensive and computationally
+demanding. 
+
+To this end, we design a novel, single-step, best-first exploration algorithm to
+detect correlated subgraph patterns: To further improve the efficiency, we
+develop a top-$k$ pruning strategy, while to reduce the memory footprints, we
+develop a compressed data structure, called $\mathcal{R}$eplica that stores all
+instances of a subgraph pattern. Our empirical results show that the proposed
+algorithm not only finds interesting correlations, but also achieves good
+performance for finding correlated subgraphs in large graphs.
+\end{abstract}
+
+\maketitle
+
+\input{introduction}
+\input{preliminaries}
+\input{exact_algo}
+\input{approx_algo}
+
+% \input{overview} \input{searchTree} \input{calculation}
+\input{algorithm}
+\input{correlatedGroup}
+
+\input{experiments}
+\input{related}
+\input{conclusions}
+
+
+\vspace{-2mm}
+{\scriptsize
+\bibliographystyle{abbrv} %\enlargethispage*{3\baselineskip}
+\bibliography{ref}
+}
+
+
+\end{document}
+
+

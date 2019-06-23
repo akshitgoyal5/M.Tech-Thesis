@@ -1,0 +1,15 @@
+\section{Overview}
+\label{sec:overview}
+
+\begin{observation}
+\label{ob:frequency}
+If two subgraphs have higher support values individually, it is very likely that the pair will also have a higher correlation.
+\end{observation}
+
+\begin{observation}
+\label{ob:dfs}
+For highly (e.g., top-$k$) correlated subgraphs mining, generally a breadth-first or a best-first exploration of the search space is more efficient
+compared to a depth-first traversal of the search space.
+\end{observation}
+
+Setting $k$ to infinity would enable us to mine all pairs of correlated subgraph patterns. However, on the contrary, it is hard to control the value of {\sf Min-sup} to get the result of a particular $k$ of {\sf Top-$k$} correlated subgraphs. That is to say, the {\sf Min-Sup} problem can be transfered from {\sf Top-$k$} problem. As a result, we concentrate on {\sf Top-$k$} problem in the following sections. 

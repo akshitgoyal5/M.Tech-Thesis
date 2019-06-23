@@ -1,0 +1,35 @@
+% \section{Extension: From Correlated Pair to Correlated Group}
+% \label{sec:correlatedGroup}
+% We have modeled the problem of mining correlated subgraph pairs and designed a novel solution to it. We can note this problem as {\bf correlated pair mining}. Similarly, we can extend to problem of {\bf correlated group mining}. 
+% \begin{defn}[Group Correlation]
+% \label{correlation}
+% Given a subgraphs $Q$ and a group of subgraphs $Group$ in the input graph $G$, the instance-groups of $Q$, 
+% $\mathbb{I'}=\{I'_1,I'_2,\ldots,I'_{\sigma(Q)}\}$ and the instance-groups of $Q'\in Group$, $\mathbb{J'}=\{J'_1,J'_2,\ldots,J'_{\sigma(Q')}\}$,
+% and a user-defined distance-threshold $h$,
+% let us assume that $\sigma(Q) \le \sigma(Q')$ for all $Q'\in Group$. Then, we define the correlation
+% $\tau(Q,Group,h)$ as follows.
+% %
+% \begin{align}
+% &\tau(Q,Group,h) \nonumber = |\{I' \in \mathbb{I'}:\forall Q'\in Group \\
+% &\exists J' \in \mathbb{J'}_Q', \exists u \in I', \exists v \in J', d(u,v)\le h\}|&
+% \end{align}
+% The correlation, for any other case $\sigma(Q')=min\{\sigma(Q)|Q\in Group\}$, can be defined analogously.
+% \end{defn}
+
+% And the problem of correlated group mining could be defined as follows.
+
+% \begin{problem}
+% \label{prob:correlated-group}
+% {\bf Correlated Subgraph {\sf Groups}.}
+% Given the input graph $G$ and a user-defined distance-threshold $h$, a group size $g$, find the {\em top-$k$} subgraph groups $\langle Q_1, Q_2, ..., Q_g \rangle$ of $G$, having the
+% maximum correlations $\tau(Q_1,Group,h)$, where $Group=\{Q_2,Q_3,...,Q_g\}$.
+% \end{problem}
+
+% To solve this problem, we only need to modify a few operations in correlation collection.
+
+
+% \spara{$\bullet$ Correlated subgraph group itemsets.} As Section \ref{subsubsec:recursive}, the $Collect(u,Q)$ actually stores a set of correlations of $Q$. As the correlation is defined between the pairs of the subgraphs $Q_1,Q_2$, we could say during final stating, we are counting the frequent items (size-$1$ itemset), with the constraints specified in Section \ref{subsubsec:ceasing}.
+% \begin{exple}
+% 	Suppose $Q_1$ has instances groups $I'_1,I'_2,I'_3$, with group center $center(I'_1)=v_1,center(I'_2)=v_2,center(I'_3)=v_3$. Suppose $Collect(v_1,Q_1)=\{Q_2\},Collect(v_2,Q_1)=\{Q_2,Q_3\},Collect(v_3,Q_1)=\{Q_4\}$, and {\sf Min-sup} $=2$, then $\tau(Q_1,Q_2,h)=2$ is the only correlation we want since $\tau(Q_1,Q_2,h)$ is not smaller than {\sf Min-sup}.
+% \end{exple}
+% The solution is rather clear right now. In case the problem changes from correlated pairs to correlated groups, we are transforming the collection problem from mining frequent items to mining frequent itemsets. If the group size is $g$, we should mine all the size-$(g-1)$ frequent itemsets. The existed approaches of mining frequent itemsets are various like Apriori, FP-tree, etc. These methods are mature and efficient so that we would not specify further operations of correlated subgraph group mining here. By carrying out any of the frequent itemset mining algorithm, together with our collection algorithm, the problem of correlated subgraph group mining can be solved.
