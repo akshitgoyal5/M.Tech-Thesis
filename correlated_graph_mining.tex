@@ -1,23 +1,62 @@
-\documentclass[sigconf,10pt]{acmart}
-\settopmatter{printacmref=false}
+\documentclass[MTech]{iitddiss}
+% \settopmatter{printacmref=false}
 
-\input{macros}
+\usepackage{t1enc}
 
-\pagenumbering{arabic}
+\usepackage{graphicx}
+\usepackage{hyperref} % hyperlinks for references.
+\usepackage{amsmath} % easier math formulae, align, subequations \ldots
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{natbib}
+\usepackage{fancyhdr}
+ \linespread{1.2}
 
-\copyrightyear{2020}
-\acmYear{2020}
-\setcopyright{acmcopyright}
-\acmConference[SIGMOD '20]{ACM SIGMOD '20: ACM International Conference on Management of Data}{June 14--19, 2020}{Portland, Oregon, USA}
-\acmPrice{15.00}
-\acmDOI{10.1145/1122445.1122456}
-\acmISBN{978-1-4503-9999-9/18/06}
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
 
+\fancyhf{}
+
+\rhead{\fancyplain{}{\thepage}} % predefined ()
+\lhead{\fancyplain{}{\rightmark}} % 1. sectionname, 1.1 subsection name etc
+\cfoot{\textcopyright \text{ } \the\year, \emph{Indian Institute of Technology Delhi}}
+\renewcommand{\footrulewidth}{0.4pt}
 \begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title page
 
 \title{Mining Top-$k$ Correlated Subgraphs in a Large Graph}
 
-\author{ACM SIGMOD Submission ID XXX}
+\author{Akshit Goyal}
+\advisor{Prof. Sayan Ranu}
+\entrynumber{2014CS50278}
+\date{June 2019}
+\department{Computer Science and Engineering}
+
+%\nocite{*}
+\maketitle
+
+% \input{macros}
+
+% \pagenumbering{arabic}
+
+% \copyrightyear{2020}
+% \acmYear{2020}
+% \setcopyright{acmcopyright}
+% \acmConference[SIGMOD '20]{ACM SIGMOD '20: ACM International Conference on Management of Data}{June 14--19, 2020}{Portland, Oregon, USA}
+% \acmPrice{15.00}
+% \acmDOI{10.1145/1122445.1122456}
+% \acmISBN{978-1-4503-9999-9/18/06}
+
+% \begin{document}
+
+% \title{}
+
+% \author{}
+% \advisor{Sayan Ranu}
+% \department{Computer Science and Engineering}
 
 %\author{Arijit Khan} \affiliation{\institution{Nanyang Technological
 %University}
@@ -39,6 +78,92 @@
 %}
 %\email{cs5140278@iitd.ac.in}
 
+% \maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Certificate
+\certificate
+
+\vspace*{0.5in}
+
+\noindent This is to certify that the thesis titled {\bf \LaTeX\ Mining Top-$k$ Correlated Subgraphs in a Large Graph}, submitted by {\bf Akshit Goyal},
+  to the Indian Institute of Technology, Delhi, for
+the award of the degree of {\bf Master of Technology}, is a bonafide
+record of the research work done by him under our supervision.  The
+contents of this thesis, in full or in parts, have not been submitted
+to any other Institute or University for the award of any degree or
+diploma.
+
+\vspace*{1.5in}
+
+\begin{singlespacing}
+\hspace*{-0.25in}
+\parbox{2.5in}{
+\noindent {\bf Prof.~1} \\
+\noindent Professor Sayan Ranu\\
+\noindent Dept. of Computer Science and Engineering\\
+\noindent IIT-Delhi, 110016 \\
+}
+\hspace*{1.0in}
+\end{singlespacing}
+\vspace*{0.25in}
+\noindent Place: New Delhi\\
+Date: June 25, 2019
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Acknowledgements
+\acknowledgements
+
+Thanks to all those who made \TeX\ and \LaTeX\ what it is today.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Table of contents etc.
+
+\begin{singlespace}
+\tableofcontents
+\thispagestyle{empty}
+
+\listoftables
+\addcontentsline{toc}{chapter}{LIST OF TABLES}
+\listoffigures
+\addcontentsline{toc}{chapter}{LIST OF FIGURES}
+\end{singlespace}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Abbreviations
+\abbreviations
+
+\noindent
+\begin{tabbing}
+xxxxxxxxxxx \= xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \kill
+\textbf{IITD}   \> Indian Institute of Technology, Delhi \\
+\textbf{RTFM} \> Read the Fine Manual \\
+\end{tabbing}
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Notation
+
+\chapter*{\centerline{NOTATION}}
+\addcontentsline{toc}{chapter}{NOTATION}
+
+\begin{singlespace}
+\begin{tabbing}
+xxxxxxxxxxx \= xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \kill
+\textbf{$r$}  \> Radius, $m$ \\
+\textbf{$\alpha$}  \> Angle of thesis in degrees \\
+\textbf{$\beta$}   \> Flight path in degrees \\
+\end{tabbing}
+\end{singlespace}
+
+\pagebreak
+\clearpage
+
+% The main text will follow from this point so set the page numbering
+% to arabic from here on.
+\pagenumbering{arabic}
 
 \vspace{-4mm}
 \begin{abstract}
@@ -67,7 +192,7 @@ algorithm not only finds interesting correlations, but also achieves good
 performance for finding correlated subgraphs in large graphs.
 \end{abstract}
 
-\maketitle
+
 
 \input{introduction}
 \input{preliminaries}

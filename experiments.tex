@@ -327,7 +327,7 @@
 % \spara{$\bullet$ Comparison with {\sf GRAMI}.} Additionally, we provide the efficiency analysis of the problem, frequent subgraph mining (FSM), of our approach {\sf CSM}, compared with the state-of-art approach of FSM in a single large graph, {\sf GRAMI}\cite{EASK14}. As the state-of-art FSM algorithm in a single large graph, {\sf GRAMI} transforms the subgraph isomorphism to a CSP (constraint satisfaction problem) and makes optimization based on it. Corresponding to our experiment result, in most of the conditions, {\sf GRAMI} has a higher efficiency due to that it does not need to find all the occurrances. However, {\sf GRAMI} could not a good performance dealing with some subgraphs since the most significant optimization, push-down prunning, could hardly contribute in this case (All the positions are valid domains of the subgraph pattern and there are totally $8$ isomorphisms using MNI metric in Figure \ref{fig:grami5}). 
 
 
-\section{Experimental Results}
+\chapter{Experimental Results}
 \label{sec:experiments}
 
 In this section, we provide the experimental result of our algorithm, noted as \textsc {CSM}. We also provide the instance-based method, noted as \textsc {GrowStore}, for comparison of frequent subgraph mining. In addition, we use \textsc {GraMi-VF3} as a comparison metric for subgraph isomorphism. GraMi is the state of the art method for frequent subgraph mining and VF3 is used for getting all instances of the frequent patterns. The algorithm is implemented in C++11 and compiled using gcc 7.4.0. All experiments are conducted on a Linux(Ubuntu 18) machine with 96 cores running at 2.1GHz with 251GB RAM and 8.5TB disk. Our experimental machine used a large memory size to accommodate the memory requirements of \textsc{GrowStore}.
@@ -337,7 +337,7 @@ In this section, we provide the experimental result of our algorithm, noted as \
 
 % Besides, we also provide the results of various input parameters, {\sf Min-sup}, hop-constraint $h$, and $k$ of {\sf Top-$k$}. All our experiments execute at GHz with $256$GB RAM and the implementation is carried out in C++.
 
-\subsection{Experimental Setup}
+\section{Experimental Setup}
 
 \spara{Datasets - } Our experiments are based on the following real graph datasets. Their main characteristics are listed in Table \ref{tab:datasets}.
 
@@ -542,7 +542,7 @@ In this section, we provide the experimental result of our algorithm, noted as \
 % In Table \ref{tab:icsm}, we present the time cost (in sec) of all the datesets with setting {\sf Min-sup} $=20$ of {\em (1)}, {\sf Min-sup} $=200$ of {\em (2)}, {\sf Min-sup} $=5000$ of {\em (3)}, {\sf Min-sup} $=200$ of {\em (4)}, and all the datasets with $h=2$, $k=5$. The approach {\sf iCSM} could have a decent performance when the dataset is not dense, or relatively small, as the experiment on dataset {\em Chemical}. However, when the dataset becomes dense, it has to tackle with the exponential growth of the number of the instances, which is very expensive. In {\em Yeast} dataset, the most frequent single edge subgraph $Q$ has a MNI support $\sigma(Q)=1.4$K, but with the number of the instances $11$K. This number continues to grow at this speed and results in nearly $0.1$ million of the most frequent two edge subgraph. Suppose this number of the instances is $n$, after MNI support is calculated in $O(n)$ time, we have to spend another $O(n^2)$ time to finish the grouping process, which assigns each instance to a particular group. Eventually, this rapid growth of instance number leads to an unacceptable time cost of the approach {\sf iCSM}.
 
 
-\subsection{Performance.}
+\section{Performance.}
 We provide the experimental results of our approximate algorithm on large datasets from now on. 
 \newline
 \newline
@@ -697,7 +697,7 @@ We provide the experimental results of our approximate algorithm on large datase
 \end{figure}
 
 
-\subsection{Quality}
+\section{Quality}
 We show the quality of our approximation algorithm by comparing the results of top k of our approximate algorithm with the exact version, both run with a size bound of maximum 5 sized patterns. We take the output of the complete version as the ground truth for all the experiments. The following 3 experiments are done to show quality of our approximate version:
 % \newline
 
@@ -734,7 +734,7 @@ We show the quality of our approximation algorithm by comparing the results of t
 	\vspace{-4mm}
 \end{table}
 
-\subsection{Interpretbility}
+\section{Interpretbility}
 
 % \spara{$\bullet$ Further Analysis} We provide some further analysis. This part contains the result of the optimization of changing collection tree root in Section \ref{subsubsec:recursive}, and the time cost we spend to avoid the subgraph/supergraph correlations. According to the experimental result, the time we use to prune the not interesting correlations is about 10\% of the total time. Besides, the root changing optimization in Section \ref{subsubsec:recursive} increase the time efficiency by 10\%.
 

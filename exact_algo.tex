@@ -1,7 +1,7 @@
-\section{Exact Algorithm}
+\chapter{Exact Algorithm}
 \label{sec:exact_algo}
 
-\subsection{Overview}
+\section{Overview}
 \label{subsec:exact_algo_overview}
 
 \begin{observation}
@@ -54,7 +54,7 @@ $\sigma(Q_i')\ge$ {\sf Min-Sup}. we put $Q_i'$ into $Leaf(T)$.
 % denoted as $corIndex(Q_i)=b$, which means $Q_i$ is the $b$-th subgraph in $T$
 % which and we put $Q_i$ into $Cor(T)$, i.e. $Cor(T)=Cor(T)\cap Q_i$.
 
-\subsubsection{Best-first Exploration}
+\subsection{Best-first Exploration}
 \label{subsubsec:exact_algo_bestfs}
 Observation \ref{ob:frequency} suggests that faster convergence of the algorithm
 could be expected if a subgraph pattern having a higher support is
@@ -65,7 +65,7 @@ has a higher priority than $Q_2$ \forall $Q_1, Q_2 \in Leaf(T)$ if and only if:
 Utilizing the estimating rule above, if the current leaf node $Q_k$ in the search tree has a highest support among all the other elements in the set of the leaf nodes, i.e. $\sigma(Q_k)=\max\{\sigma(Q_i)|Q_i\in Leaf(T)\}$. Then, $Q_k$ has the priorty to be calculated and extended.
 
 
-\subsubsection{Termination Criteria}
+\subsection{Termination Criteria}
 \label{subsubsec:exact_algo_ceasing}
 Obviously, our purpose is to find $k$ pairs of correlated subgraphs and guarantee that the other pair of subgraphs could not have a higher correlation $\tau$. Retrospect the properties mentioned in Section \ref{sec:overview}, assume $Q$ is a frequent subgraph of the data graph, $Q_k$ is an arbitary frequent subgraph of the data graph. We denote $Sup(Q)$ as the set of all the possible supergraphs of $Q$ and $Q'\in Sup(Q)$. Then, the following condition always holds:
 \begin{align*} \tau(Q',Q_k,h)\le \sigma(Q') \end{align*}
@@ -105,10 +105,10 @@ In this case, all the $Q,Q\in Leaf(T)$ is possible to have the correlation we wa
 
 
 
-\subsection{Replica-based Graph Instance Storage}
+\section{Replica-based Graph Instance Storage}
 \label{subsec:replica-storage}
 
-\subsubsection{Replica Graph Data Structure}
+\subsection{Replica Graph Data Structure}
 \label{subsubsec:replica-ds}
 Considering the large amount of overlaps of the instances in dense graph, we use a novel structure to store a subgraph pattern, which not only get rid of the expensive cost of tackling dense graph, but also be the robust foundation of carrying out an efficient correlation calculation based on instance grouping.
 \par Our search tree storage unit is extremely direct and naive. Instead of considering the instances of a pattern, we just create a reproduce of the occurrences of the vertices and the edges of the pattern, called {\bf replica}. We record all the vertex identifications and the edge connections in the replica, we do not record the edge labels.
@@ -139,7 +139,7 @@ After $Q$ has been $operated$, we remove $replica(Q)$ from memory.
 
 \spara{$\bullet$ Replica Unit.} The illustration of replica is as Figure \ref{fig:replica}. The details of replica is as follows.\\1) For each $Q\in T$, there is a corresponding replica $R(Q)$.\\2) For each $u_i\in Q$, there is a hash-map, $R_i(Q)$, recording the vertex identifications, and $R(Q)=(R_1(Q), R_2(Q), ..., R_{|V_Q|}(Q))$.\\3) For each element $v\in R_i(Q)$, there is a record of all the other vertices which $v$ is connected to in the occurrences of $Q$.
 
-\subsubsection{Generation of a Replica Graph}
+\subsection{Generation of a Replica Graph}
 \label{subsubsec:replica-gen}
 Algorithms 1 and 2 together describe the complete procedure to construct the replica graph for a subgraph pattern. Replica construction for any pattern $R$ requires knowledge of the replica graph of the pattern $Q$ that is extended to generate it. Henceforth, we refer to such a pattern $R$ as a $child\ pattern$ of $Q$ and $Q$ as the $parent\ pattern$ of $R$. Since the search procedure processes a pattern only after its parent, the replica graph of the $parent\ pattern$ can be used for constructing the replica graph of the $child\ pattern$.
 % \begin{algorithm}
@@ -259,12 +259,12 @@ Algorithm 1 essentially describes a procedure to find every mapping (also referr
 This replica storage strategy not only builds a foundation for the sequential efficient correlation calculation, but also benefits the MNI support counting in the single large graph since we can directly get $\sigma(R)$ when we record the replica of $R$ just by counting all the sizes of the images $M(v)$, where $v\in R$.
 
 
-\subsubsection{Indexing to Facilitate Replica Deletion}
+\subsection{Indexing to Facilitate Replica Deletion}
 \label{subsubsec:replica-indexing}
 
-\subsection{Subgraph Extension}
+\section{Subgraph Extension}
 \label{subsec:subgraph-ext}
-\subsubsection{Extension Rule}
+\subsection{Extension Rule}
 We subscript the node patterns in a subgraph patterns to identify their order of discovery.
 \begin{defn}[Vertices Subscripting]
 	Let $Q$ be a frequent subgraph in $T$, apart from vertex identification $v_i$, we use another metric to subscript the vertices in $Q$ by the order we discover the pattern $Q$, denoted as $S_Q=(s_0,s_1,...,s_n)$, where $n=|V_Q|$. And for $s_i$ and $s_j$, if $i<j$, then the vertex $v_i$ is discovered earlier than the vertex $v_j$.
@@ -304,16 +304,16 @@ Taking advantage of subscripting, it is easy to get the right-most path of a sub
 	\caption{\textsc{SubgraphEdgeExtensions}}\label{algo:extension}
 \end{algorithm}
 
-\subsubsection{Duplicated Subgraph Prunning}
+\subsection{Duplicated Subgraph Prunning}
 To avoid the duplicated subgraph judgement, we take the advantage of the DFS code, and the minimum DFS code in gSpan\cite{YH02}, whenever a subgraph is founded, we get its DFS code, denoted as $C(Q)$ and remodel this subgraph by using this code. Then, we build the minimum DFS code of this subgraph $Q$. This minimum DFS code, denoted as $Z(Q)$ is the canonical label of this subgraph in our definition.
 
 \par We use a dictionary $\mathbb{D}$ to store all the minimum DFS code we have discovered so far. When a subgraph $Q$ is discovered and its graph code $C(Q)$ has been transformed to minimum DFS code $Z(Q)$, we search $Z(Q)$ in the dictionary. If $Z(Q)\in \mathbb{D}$, then $Q$ must have been discovered before, so we prune $Q$.
 
 
-\subsection{Correlation Computation}
+\section{Correlation Computation}
 \label{subsec:corrcomp}
 
-\subsubsection{Global Index}
+\subsection{Global Index}
 \label{subsec:global-index}
 
 We use a global index to record all the distance information. Each vertex of the data graph stores two catogories of distance information.
@@ -326,7 +326,7 @@ We use a global index to record all the distance information. Each vertex of the
 \squishend
 With the global index acquired before the search, there is no need to consider anything about the distance (hop-constraints) in the search steps. The detail of the maintenance of these two indices is specified in Section \ref{subsec:calculating}.
 
-\subsubsection{Calculating Correlation}\label{subsec:calculating}
+\subsection{Calculating Correlation}\label{subsec:calculating}
 \begin{defn}[Positive Instance Group]
 	Given two subgraphs $Q_1$ and $Q_2$ in the input graph $G$, their instance-groups
 	$\mathbb{I'}=\{I'_1,I'_2,\ldots,I'_{\sigma(Q_1)}\}$ and $\mathbb{J'}=\{J'_1,J'_2,\ldots,J'_{\sigma(Q_2)}\}$,
@@ -344,7 +344,7 @@ With the global index acquired before the search, there is no need to consider a
 \end{thrm}
 The process of correlation calculation could be considered as a {\bf collection}. Suppose we are calculating the correlation of $Q_1$, i.e. $\tau(Q_1,Q_k,h)$, for all $Q_k\in Cor(T)$. Taking advantage of the global index in Section \ref{subsec:global-index}, by traversing all the vertices in a group can we know the correlation $\tau()$ of all the $v$. We collect these sets one-by-one and finally we could know all the correlation of $Q_1$, i.e. $\tau(Q_1,Q_k,h)$, for all $Q_k\in Cor(T)$.
 
-\subsubsection{Replica Structure Transformation}
+\subsection{Replica Structure Transformation}
 It is more convenient to implement an efficient collection in a hierarchical structure, like tree. As a result, to initialize a collection, we first transform the search space of the collection to a particular tree.
 \par Prior to the detailed operations, we first define the group center and the collection tree of a pattern.
 \begin{defn}[Group Center and Center Subscript]
@@ -470,7 +470,7 @@ Algorithm 4 summarises the steps described above.
 % \end{exple}
 
 
-\subsubsection{Avoiding Subgraph/Supergraph Correlation}\label{subsec:avoiding}
+\subsection{Avoiding Subgraph/Supergraph Correlation}\label{subsec:avoiding}
 As we mentioned in Section \ref{sec:problem}, we do not want to consider the correlation of $Q_1,Q_2$ if $Q_1$ is a subgraph or a supergraph of $Q_2$. If $Q_2$ is extended from $Q_1$, we could easily know $Q_2$ is the supergraph of $Q_1$ and skip their correlation calculation. However, there are more troublesome conditions.
 
 
@@ -501,12 +501,12 @@ $Q_2$. As a result, if $Q_1$ can extend to $Q_2$, then we operate
 $SubRec(Q_2)=SubRec(Q_2)\cap Q_1\cap SubRec(Q_1)$. As {\sf Op($Q$)} is
 occurring, if $Q_i\in SubRec(Q)$, we skip $\tau(Q,Q_i,h)$.
 
-\subsection{Mining Algorithm}
+\section{Mining Algorithm}
 \label{subsec:miningalgo}
 The complete mining algorithm consists of an initialization step and the search
 algorithm to compute top-\textit{k} pairs of correlated subgraph patterns. The
 details of these procedures are described in the following subsections.
-\subsubsection{Initialization}
+\subsection{Initialization}
 \label{subsec:initialization}
 Algorithm \ref{algo:initialization} specifies the step-by-step operations of the
 initialization procedure.
@@ -550,7 +550,7 @@ hereafter and doing so accelerates the search procedure.
 % from the data graph (line ) because they are useless after initialization and
 % removing them could accelerate the search.
 
-\subsubsection{Search Steps}
+\subsection{Search Steps}
 \label{subsec:search-steps}
 Following the initialization, the search algorithm as specified in
 Algorithm~\ref{algo:searchsteps} is executed.
