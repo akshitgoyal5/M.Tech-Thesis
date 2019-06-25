@@ -12,12 +12,12 @@
 
 \begin{observation}
 	\label{ob:dfs}
-	\textcolor For highly (e.g., top-$k$) correlated subgraphs mining, generally a
+	For highly (e.g., top-$k$) correlated subgraphs mining, generally a
 	breadth-first or a best-first exploration of the search space is more
 	efficient compared to a depth-first traversal of the search space.
 \end{observation}
 
-\textcolor Setting $k$ to infinity would enable us to mine all pairs of correlated subgraph
+Setting $k$ to infinity would enable us to mine all pairs of correlated subgraph
 patterns. However, on the contrary, it is hard to control the value of {\sf
 Min-sup} to get the result of a particular $k$ of {\sf Top-$k$} correlated
 subgraphs. That is to say, the {\sf Min-Sup} problem can be transfered from {\sf
@@ -844,30 +844,30 @@ Algorithm~\ref{algo:searchsteps} is executed.
 \end{algorithm}
 
 The algorithm begins with the initialization of a priority queue called
-$Processing\_Queue$ (line 1) that stores subgraph patterns scheduled for
+\textit{Search Queue} (line 1) that stores subgraph patterns scheduled for
 correlation computation with the property that a pattern with a higher
 MNI-support is accorded a higher priority following the best-first search
-strategy (Section~\ref{subsubsec:estimating}). $Processing\_Queue$ is
+strategy (Section~\ref{subsubsec:exact_algo_bestfs}). \textit{Search Queue} is
 initialized with the set of frequent edges (queued in the order of decreasing
-support values). During search, as long as the $ceasing\ condition$
-(Section~\ref{subsubsec:ceasing}) remains unsatisfied, the subgraph pattern at
-the front of $Processing\_Queue$ is selected for correlation computation and
-extension. Correlation computation takes place in method {\sf Operate}
+support values). During search, as long as the \textit{ceasing condition}
+(Section~\ref{subsubsec:exact_algo_ceasing}) remains unsatisfied, the subgraph pattern at
+the front of \textit{Search Queue} is selected for correlation computation and
+extension. Correlation computation takes place in method \textsc{Operate}
 (Algorithm~\ref{algo:operate}) wherein the top-\textit{k} set can also be
 updated. This is followed by the computation of all possible one edge extensions
-in $Q$ in method {\sf Subgraph Edge Extensions} (line 5). For every candidate
+in $Q$ in method \textsc{SubgraphEdgeExtensions} (line 5). For every candidate
 extension in $Ex(Q)$, the DFS Code of the resulting child subgraph pattern $Q'$
 is tested for presence in dictionary $\mathbb{D}$. A match in $\mathbb{D}$
 indicates that $Q'$ has already been generated previously, so the algorithm
 proceeds with the MNI-support computation only if there is no match (line 8).
 MNI-support computation for $Q'$ requires the construction of its $replica$
 structure, which the algorithm computes and stores through the invocation of
-{\sf Get Replica} method described (line 9). Note that the $replica$ structure
+\textsc{GetReplica} method described (line 9). Note that the $replica$ structure
 for a child pattern not only establishes the MNI-support but also allows
-correlation computation in method {\sf Operate}. If the child pattern's
-MNI-support value exceeds the threshold $min\_sup$, it is pushed into
-$Processing\_Queue$ (line 12) to be (possibly) processed in a later iteration of
-the outer loop. $DFS\_Code(Q')$ is recorded in $\mathbb{D}$ (line 14).
+correlation computation in method \textsc{Operate}. If the child pattern's
+MNI-support value exceeds the threshold {\sf min\_sup}, it is pushed into
+\textit{Search Queue} (line 12) to be (possibly) processed in a later iteration of
+the outer loop. \textit{DFS Code($Q'$)} is recorded in $\mathbb{D}$ (line 13).
 % During the search step, if the ceasing condition in Section
 % \ref{subsubsec:ceasing} is not satisfied, we select a subgraph $Q$ in
 % $Leaf(T)$ according to the criteria in Section \ref{subsubsec:estimating}
