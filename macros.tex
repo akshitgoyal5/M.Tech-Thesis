@@ -6,14 +6,14 @@
 %\usepackage[T1]{fontenc}
 \renewcommand{\rmdefault}{ptm}
 %\usepackage{mtpro2}
-\usepackage{varwidth}
+\usepackage{varwidth,times}
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{epsfig}
 \usepackage{graphicx}
-\usepackage{subfigure}
+% \usepackage{subfigure} %OBSOLETE
 \usepackage{url}
 \usepackage[bottom]{footmisc}
 \usepackage{balance}
@@ -42,11 +42,18 @@
 \usepackage{multirow}
 \usepackage{xspace}
 %\usepackage{latexsym}
-%\usepackage{color}
+\usepackage{xcolor}
 %\usepackage{multirow}
 %\usepackage{times}
 %\usepackage{cite}
-\usepackage[singlelinecheck=off]{caption}
+\usepackage{tikz}
+% \usepackage[singlelinecheck=off]{caption}
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup{justification=raggedright,textfont=normalfont,singlelinecheck=false}
+\captionsetup[subfigure]{labelfont=normalfont,textfont=normalfont,singlelinecheck=on,justification=raggedright, skip=15pt}
+% \captionsetup[subfigure]{skip=15pt} % global setting for subfigure
+
 \DeclareCaptionType{copyrightbox}
 %\usepackage{url}
 %\usepackage{justification=justified,singlelinecheck=false}{caption}
