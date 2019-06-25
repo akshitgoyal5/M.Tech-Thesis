@@ -1,4 +1,19 @@
-% \section{Conclusions}
-% \label{sec:conclusions}
-
-
+\chapter{Conclusions}
+\label{sec:conclusions}
+In this thesis, we presented a novel approach to compute \textit{correlations}
+between two subgraphs in a single large graph, where we defined
+\textit{correlations} on the basis of a distance metric. We introduced a novel
+method to group instances and defined the \textit{correlation value} $(\tau)$ as
+the count of such \textit{instance groups} for a pattern in proximity to those
+of another pattern. For computing all instances, we proposed a
+\textsc{TreeSearch} backtracking algorithm. The algorithm constructs what we
+call the \textit{Replica} structure - an occurrence graph of a pattern in a data
+graph. However in a dense or large graph, computing the \textit{replica} is
+computationally intensive since subgraph isomorphism is an \textit{NP-hard}
+problem and the number of instances of a pattern generally increases
+exponentially with increasing graph density. To solve this problem, we proposed
+an Approximation scheme that constructs the \textit{Replica} approximately. We
+observed good performance of the Approximation algorithm on large datasets, as
+reported by the \textit{Kendall-Tau's coefficient}, \textit{Jaccard coefficient}
+and \textit{Percentage error in $\tau$ values} - which were close to perfect
+values for almost all datasets we tested on. 

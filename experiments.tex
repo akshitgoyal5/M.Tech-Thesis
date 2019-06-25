@@ -327,7 +327,7 @@
 % \spara{$\bullet$ Comparison with {\sf GRAMI}.} Additionally, we provide the efficiency analysis of the problem, frequent subgraph mining (FSM), of our approach {\sf CSM}, compared with the state-of-art approach of FSM in a single large graph, {\sf GRAMI}\cite{EASK14}. As the state-of-art FSM algorithm in a single large graph, {\sf GRAMI} transforms the subgraph isomorphism to a CSP (constraint satisfaction problem) and makes optimization based on it. Corresponding to our experiment result, in most of the conditions, {\sf GRAMI} has a higher efficiency due to that it does not need to find all the occurrances. However, {\sf GRAMI} could not a good performance dealing with some subgraphs since the most significant optimization, push-down prunning, could hardly contribute in this case (All the positions are valid domains of the subgraph pattern and there are totally $8$ isomorphisms using MNI metric in Figure \ref{fig:grami5}). 
 
 
-\section{Experiments}
+\chapter{Experiments}
 \label{sec:experiments}
 
 In this section, we benchmark the proposed algorithms (CSM-Exact and CSM-Approximate, denoted as CSM-E and CSM-A respectively) and establish that:
@@ -343,11 +343,11 @@ In this section, we benchmark the proposed algorithms (CSM-Exact and CSM-Approxi
 
 % Besides, we also provide the results of various input parameters, {\sf Min-sup}, hop-constraint $h$, and $k$ of {\sf Top-$k$}. All our experiments execute at GHz with $256$GB RAM and the implementation is carried out in C++.
 
-\subsection{Experimental Setup}
+\section{Experimental Setup}
 \label{sec:setup}
 All of our algorithms have been implemented in C++ and compiled using gcc 7.4.0. All experiments are conducted on a Linux(Ubuntu 18.04) machine with 96 cores running at 2.1GHz with 251GB RAM and 8.5TB disk. Our experimental machine used a large memory size to accommodate the memory requirements of the baseline algorithms. %\textsc{GrowStore}.a
 
-\subsubsection{Datasets} 
+\subsection{Datasets} 
 \label{ref:datasets}
 
 We use the seven real datasets, summarized in Table \ref{tab:datasets}, to benchmark CSM.
@@ -391,7 +391,7 @@ $\bullet${\textit{DBLP citation}\cite{}}. Each vertex is a publication and the l
 \end{table}
 
 
-\subsubsection{Parameters} There are three different input parameters to our problem: MNI support {\sf Min-sup}, the $k$ value of our {\sf Top-$k$} results, and the hop-constraint value $h$. We show the results of our experiments by varying the values of each of these input parameters. When not specifically mentioned, the default values of $k$ and $h$ are set to $20$ and $1$ respectively. %Increasing the value of {\sf Min-sup} results in a decrease of frequent subgraphs, increasing the value of $k$ results in an increase of output number, increasing the value of $h$ results in more correlated subgraph pairs.
+\subsection{Parameters} There are three different input parameters to our problem: MNI support {\sf Min-sup}, the $k$ value of our {\sf Top-$k$} results, and the hop-constraint value $h$. We show the results of our experiments by varying the values of each of these input parameters. When not specifically mentioned, the default values of $k$ and $h$ are set to $20$ and $1$ respectively. %Increasing the value of {\sf Min-sup} results in a decrease of frequent subgraphs, increasing the value of $k$ results in an increase of output number, increasing the value of $h$ results in more correlated subgraph pairs.
 
 % \par In brief, if we ignore the value of $k$, by decreasing the value of {\sf Min-sup}, and by increasing the value of $h$, we get more correlated subgraphs.
 % \par We evaluate the efficiency of the approach by setting various input parameters and analyze the time cost. The time cost is recorded from the initialization to the end of the search.
@@ -433,7 +433,7 @@ $\bullet${\textit{DBLP citation}\cite{}}. Each vertex is a publication and the l
 
 
 
-\subsubsection{Baselines} We compare CSM-E and CSM-A with two baselines. %The first one is the exact algorithm - \textsc{CSM-Exact} (Section \ref{sec:exact_algo}) . The second one is 
+\subsection{Baselines} We compare CSM-E and CSM-A with two baselines. %The first one is the exact algorithm - \textsc{CSM-Exact} (Section \ref{sec:exact_algo}) . The second one is 
 
 $\bullet$ \textbf{GrowStore: } \textsc{GrowStore} employs the same algorithm as CSM-E except one critical difference; instead of using the replica to summarize all instances, we store each of the instances individually. More simply, comparing with GrowStore allows us to precisely quantify the benefit obtained due to using the replica data structure.
 
@@ -441,17 +441,17 @@ $\bullet$ \textbf{GraMi-VF3:} In this approach, we first use \textsc{GraMi}\cite
 %We do not do correlation computation for $GraMi\ plus\ VF3$ as doing subgraph isomorphism for all the frequent patterns takes a significant amount of time which is larger than our entire approximate algorithm. \textsc{GrowStore} shows the advantage that we have in terms of memory for storing all the instances as discussed later. 
 % For the datasets like {\em DBLP} which is very large but less dense, the number of the subgraphs dose not grow very quickly when the value of {\sf Min-sup} decrease. For the datasets like {\em Yeast} which is very dense, the number of the subgraphs increase at a multiple speed. However, the number of correlation is also much higher in dense graphs than that in sparse graphs because more degree also leads to the higher possibility of the correlations, which leads to an early termination and succeed to keep the efficiency of our approach.
 
-\subsection{Efficiency}
+\section{Efficiency}
 %\par \textit{Running Time Comparison.} 
 In this section, we compare the efficiency of CSM-E and CSM-A against the baseline techniques. Since the baseline algorithms are exorbitantly slow, we %limit ourselves only to the small datasets listed in Table~\ref{tab:datasets}.  for large and dense datasets so we compare the running times of our approximate algorithm with these baselines with 
 restrict the mining process to only patterns containing at most $5$ vertices. As the pattern size increases, the cost of enumerating their instances increases exponentially, since it involves performing subgraph isomorphism tests. 
 
-\subsubsection{Running time: } Figure \ref{fig:baseline_comp} presents the running times of the benchmarked algorithms across different datasets against the support threshold. %is varied at $k=20$, $h=1$. 
+\subsection{\textit{Running time:}} Figure \ref{fig:baseline_comp} presents the running times of the benchmarked algorithms across different datasets against the support threshold. %is varied at $k=20$, $h=1$. 
 As expected, CSM-A is the fastest algorithm followed by CSM-E, and then GrowStore. Note that we do not show the running time of GraMi-VF3 since it fails to terminate even after $7$ days. 
 
 Several key insights can be derived from Figure \ref{fig:baseline_comp}. First, as evident from GraMi-VF3, using frequent subgraph mining to solve the proposed problem is not scalable. Second, the slow running time of GrowStore shows that the replica data structure is effective in reducing the computation cost. Finally, CSM-A is XX times faster than CSM-E on average, with the difference being more significant on smaller values of support threshold. This is expected since as the support threshold is lowered, the search space increases exponentially, and the impact of avoiding repetitive computation magnifies.
 
-\subsubsection{\textit{Memory footprint.}} Our goal in this experiment is to understand the reduction obtained in memory footprint due to the replica data structure. Replica provides an efficient mechanism to store all instances of a subgraph pattern in a compact manner. In contrast, \textsc{GrowStore} stores all instances separately. This is a significant bottleneck since, in the worst case, the number of instances of a subgraph could be exponential. %So in a frequent subgraph mining setting, \textsc{GrowStore} does work for small and less dense graphs but as the graph size increases or the graph becomes dense, the number of instances grow exponentially and thus the storage cost becomes too high. 
+\subsection{\textit{Memory footprint.}} Our goal in this experiment is to understand the reduction obtained in memory footprint due to the replica data structure. Replica provides an efficient mechanism to store all instances of a subgraph pattern in a compact manner. In contrast, \textsc{GrowStore} stores all instances separately. This is a significant bottleneck since, in the worst case, the number of instances of a subgraph could be exponential. %So in a frequent subgraph mining setting, \textsc{GrowStore} does work for small and less dense graphs but as the graph size increases or the graph becomes dense, the number of instances grow exponentially and thus the storage cost becomes too high. 
 In figure \ref{fig:mem_comp}, we compare the memory footprint of \textsc{CSM-A} with \textsc{GrowStore}. On average, CSM-A consumes more than $100$ times lower memory than GrowStore. This stark difference in the memory consumption of CSM-A and GrowStore clearly highlights that replica is not only critical to reduce running time, but also the memory footprint. Note that CSM-E has the same memory requirements as CSM-A and hence we do not plot CSM-E in figure \ref{fig:mem_comp}. In the plot of LASTFM, we have just one point for \textsc{GrowStore} because its memory consumption exceeds $256 GB$  for lower supports. The same happened in the lowest support threshold for a small dataset like Citeseer as well. 
 
 % Besides, we provide the total number of correlations with different input parameters {\sf Min-sup} and $h$, as Table \ref{tab:k-result}. The result is also easy to infer, which is, with lower {\sf Min-sup} or larger $h$, the total number of correlations would increase.
@@ -508,33 +508,7 @@ In figure \ref{fig:mem_comp}, we compare the memory footprint of \textsc{CSM-A} 
 % \end{table}
 % \newline
 % \newline
-\eat{
-\begin{figure}[t!]
-\vspace{-2mm}
-\centering
-\subfigure[{\scriptsize {\sf Hop-$1$, K-$20$} in {\em LASTFM}}]{
-\includegraphics[scale=0.24]{img2/lastfm/lastfm_h1.pdf}
-\label{fig:lastfm_h1}
-}
-\subfigure[{\scriptsize {\sf Hop-$1$, K-$20$} in {\em Mico}}]{
-\includegraphics[scale=0.24]{img2/mico/mico_h1.pdf}
-\label{fig:mico_h1}
-}
-\subfigure[{\scriptsize {\sf Hop-$1$, K-$20$} in {\em DBLP Coauthor}}]{
-\includegraphics[scale=0.24]{img2/coauthordblp/coauthordblp_h1.pdf}
-\label{fig:coauthordblp_h1}
-}
-% 
-\subfigure[{\scriptsize {\sf Hop-$1$, K-$20$} in {\em DBLP Citation}}]{
-\includegraphics[scale=0.24]{img2/citationdblp/citationdblp_h1.pdf}
-\label{fig:citationdblp_h1}
-}
-\vspace{-2mm}
-\caption{\scriptsize {\sf Baseline Running Time Comparisons}.}
-\label{fig:baseline_comp}
-\vspace{-2mm}
-\end{figure}
-}
+
 \begin{figure*}
 	\vspace{-2mm}
 	\centering
@@ -565,25 +539,6 @@ In figure \ref{fig:mem_comp}, we compare the memory footprint of \textsc{CSM-A} 
 \end{figure*}
 
 
-\eat{
-\begin{figure}[t!]
-\vspace{4mm}
-\centering
-\subfigure[{\scriptsize {\sf Hop-$1$, K=$20$} in {\em LastFM}}] {
-\includegraphics[keepaspectratio,scale=0.24]{img2/lastfm/lastfm_mem.pdf}
-\label{fig:lastfm_mem}
-}
-\subfigure[{\scriptsize {\sf Hop-$1$, K-$20$} in {\em Citeseer}}]  {
-\includegraphics[keepaspectratio,scale=0.24]{img2/citeseer/citeseer_mem.pdf}
-\label{fig:citeseer_mem}
-}
-\vspace{-2mm}
-\caption{\scriptsize Baseline Memory Comparison.}
-\label{fig:mem_comp}
-\vspace{-2mm}
-\end{figure}
-}
-
 \begin{figure*}
 	\vspace{4mm}
 	\centering
@@ -600,50 +555,18 @@ In figure \ref{fig:mem_comp}, we compare the memory footprint of \textsc{CSM-A} 
 	\vspace{-2mm}
 	\caption{\scriptsize {\sf Baseline Memory Comparison}.}
 	\label{fig:mem_comp}
-	\vspace{-2mm}
+	\vspace{6mm}
 \end{figure*}
-
-
-
-
 
 % In Table \ref{tab:icsm}, we present the time cost (in sec) of all the datesets with setting {\sf Min-sup} $=20$ of {\em (1)}, {\sf Min-sup} $=200$ of {\em (2)}, {\sf Min-sup} $=5000$ of {\em (3)}, {\sf Min-sup} $=200$ of {\em (4)}, and all the datasets with $h=2$, $k=5$. The approach {\sf iCSM} could have a decent performance when the dataset is not dense, or relatively small, as the experiment on dataset {\em Chemical}. However, when the dataset becomes dense, it has to tackle with the exponential growth of the number of the instances, which is very expensive. In {\em Yeast} dataset, the most frequent single edge subgraph $Q$ has a MNI support $\sigma(Q)=1.4$K, but with the number of the instances $11$K. This number continues to grow at this speed and results in nearly $0.1$ million of the most frequent two edge subgraph. Suppose this number of the instances is $n$, after MNI support is calculated in $O(n)$ time, we have to spend another $O(n^2)$ time to finish the grouping process, which assigns each instance to a particular group. Eventually, this rapid growth of instance number leads to an unacceptable time cost of the approach {\sf iCSM}.
 
-
-\subsection{Performance.}
+\section{Performance.}
 We provide the experimental results of our approximate algorithm on large datasets from now on. 
 \newline
 \newline
 \spara{Running Time Comparison.} Figure \ref{fig:approx_nobound} shows results of our approximation on four datasets at different $hops$ and varied $support$. The running time decreases with increasing support. As we increase hops, time and space required to compute proximate vertices index($CorV$) increases and as a result, the time taken for correlation computation also increases due to more correlations obtained. However, this can  sometimes lead to early termination as the top K set gets filled early. If the decrease in time due to this dominates the increase in time which is there, time may also decrease with increasing hops.
 % From our empirical result, if there are enough $k$ correlations eligible, the time cost of all the datasets setting $h=0$ and $h=1$ could have no difference larger than $1$ sec. This is because through $h=1$ has a time increase from $h=0$, the total time cost at correlation calculation still does not dominate the total time cost. However, setting $h=2$ would receive a much higher time cost because the time cost of correlation calculation begins to dominate the total cost. However, when $h=3$, the time cost becomes extremely expensive and also has the memory cost over $256$GB. As a result, an approximation mining approach need to be proposed.
 
-\eat{
-\begin{figure}[t!]
-% \vspace{-2mm}
-% \centering
-\subfigure[{\scriptsize {\sf K-$20$} in {\em LastFM}}]{
-\includegraphics[keepaspectratio, scale=0.24, angle=0]{img2/lastfm/lastfm_running_time_nobound.pdf}
-\label{fig:lastfm_nosb}
-}
-% width=\linewidth, height=\textheight, 
-\subfigure[{\scriptsize {\sf K-$20$} in {\em Mico}}]{
-\includegraphics[keepaspectratio, scale=0.24, angle=0]{img2/mico/mico_running_time_nobound.pdf}
-\label{fig:mico_nosb}
-}
-\subfigure[{\scriptsize {\sf K-$20$} in {\em DBLP Coauthor}}]{
-\includegraphics[keepaspectratio, scale=0.24, angle=0]{img2/coauthordblp/coauthordblp_running_time_nobound.pdf}
-\label{fig:coauthordblp_nosb}
-}
-\subfigure[{\scriptsize {\sf K-$20$} in {\em DBLP Citation}}]{
-\includegraphics[scale=0.24, angle=0]{img2/citationdblp/citationdblp_running_time_nobound.pdf}
-\label{fig:citation_nosb}
-}
-\vspace{-2mm}
-\caption{\scriptsize CSMA Running Time Results.}
-\label{fig:approx_nobound}
-\vspace{-6mm}
-\end{figure}
-}
 
 \begin{figure*}
 	% \vspace{4mm}
@@ -673,29 +596,6 @@ We provide the experimental results of our approximate algorithm on large datase
 	\label{fig:approx_nobound}
 	\vspace{-4mm}
 	\end{figure*}
-	
-
-
-
-
-\eat{
-\begin{figure}[t!]
-\vspace{4mm}
-\centering
-\subfigure[{\scriptsize {\sf Hop-$1$} in {\em LastFM}}] {
-\includegraphics[keepaspectratio,scale=0.25]{img2/lastfm/lastfm_K_var_f.pdf}
-\label{fig:lastfm_k}
-}
-% \subfigure[{\scriptsize {\sf Hop-$1$} in {\em Citeseer}}]  {
-% \includegraphics[keepaspectratio,scale=0.25]{img2/citeseer/citeseer_K_var.pdf}
-% \label{fig:citeseer_k}
-% }
-\vspace{-2mm}
-\caption{\scriptsize CSMA results with varying k, LASTFM $\sigma$=1200, DBLP Coauthor $\sigma$=11000.}
-\label{fig:approx_k}
-\vspace{-2mm}
-\end{figure}
-}
 
 \begin{figure*}
 	\vspace{4mm}
@@ -721,45 +621,21 @@ We provide the experimental results of our approximate algorithm on large datase
 
 \spara{Comparison with other search strategies} We provide the comparison of our $Best$ $First$ $Search$ strategy with other search strategies, $Breadth$ $First$ $Search(BFS)$ and $Depth$ $First$ $Search(DFS)$. We count the number of patterns processed in all the three strategies by counting the number of patterns which are popped from the {\sf Search\ Queue}. Figure \ref{fig:dbfs} shows the results of these experiments on two datasets by varying $min-sup$ and $K$. 
 
-\par In $DFS$, if we go to a branch where all patterns are frequent till a greater depth, it will lead to a lot of patterns being processed. $BFS$ processes all the patterns at a level as we can only stop processing patterns when all the patterns at a given depth have support less than the least correlation value in top k. However in best first search, there is no such restriction and we can stop as soon as we find a pattern with support less than the least correlation value in top k as all the other patterns will have a support less than or equal to the current pattern. In addition, the problem setting is such that patterns with higher frequency tend to have a higher correlation with other patterns and the best first strategy takes full advantage of this. However, if program gets terminated after all the patterns are processed and there are no patterns remaining in the {\sf Search\ Queue}, best first will have exactly same number of patterns explored as $BFS$ and $DFS$.
-
-\eat{
-\begin{figure}[t!]
-\vspace{4mm}
-\centering
-\subfigure[{\scriptsize {\sf K}=$20$, $Hop=1$ in {\em LastFM}}] {
-\includegraphics[keepaspectratio,scale=0.24, angle=0]{img2/lastfm/lastfm_bfsdfs_pop.pdf}
-\label{fig:lastfm_bfsdfs_pop}
-}
-\subfigure[{\scriptsize {\sf Sup}=$1200$, $Hop=1$ in {\em LastFM}}] {
-\includegraphics[keepaspectratio,scale=0.24, angle=0]{img2/lastfm/lastfm_bfsdfs_pop_k.pdf}
-\label{fig:lastfm_bfsdfs_pop_k}
-}
-\subfigure[{\scriptsize {\sf K}=$20$, $Hop=1$ in {\em Chemical}}]  {
-\includegraphics[keepaspectratio,scale=0.24, angle=0]{img2/chemical/chemical_bfsdfs_pop.pdf}
-\label{fig:chemical_bfsdfs_pop}
-}
-\subfigure[{\scriptsize{\sf Sup}=$10$, $Hop=1$ in {\em Chemical}}]  {
-\includegraphics[keepaspectratio,scale=0.24, angle=0]{img2/chemical/chemical_bfsdfs_pop_k.pdf}
-\label{fig:chemical_bfsdfs_pop_k}
-}
-
-\subfigure[{\scriptsize {\sf K}=$20$, $Hop=1$ in {\em DBLP Citation}}]  {
-\includegraphics[keepaspectratio,scale=0.24, angle=0]{img2/citationdblp/citationdblp_bfsdfs_pop.pdf}
-\label{fig:chemical_bfsdfs_pop}
-}
-\subfigure[{\scriptsize{\sf Sup}=$10$, $Hop=1$ in {\em DBLP Citation}}]  {
-\includegraphics[keepaspectratio,scale=0.24, angle=0]{img2/citationdblp/citationdblp_bfsdfs_pop_k.pdf}}
-\label{fig:chemical_bfsdfs_pop_k}
-\vspace{-2mm}
-\caption{\scriptsize Comparison with BFS and DFS.}
-\label{fig:dbfs}
-\vspace{-2mm}
-\end{figure}
-}
-
+\par In $DFS$, if we go to a branch where all patterns are frequent till a
+greater depth, it will lead to a lot of patterns being processed. $BFS$
+processes all the patterns at a level as we can only stop processing patterns
+when all the patterns at a given depth have support less than the least
+correlation value in top k. However in best first search, there is no such
+restriction and we can stop as soon as we find a pattern with support less than
+the least correlation value in top k as all the other patterns will have a
+support less than or equal to the current pattern. In addition, the problem
+setting is such that patterns with higher frequency tend to have a higher
+correlation with other patterns and the best first strategy takes full advantage
+of this. However, if program gets terminated after all the patterns are
+processed and there are no patterns remaining in the {\sf Search\ Queue}, best
+first will have exactly same number of patterns explored as $BFS$ and $DFS$.
 \begin{figure*}
-	\vspace{4mm}
+	% \vspace{4mm}
 	\centering
 	\begin{subfigure}[t]{0.25\textwidth}
 		\includegraphics[keepaspectratio,scale=0.24, angle=0]{img2/lastfm/lastfm_bfsdfs_pop.pdf}
@@ -794,64 +670,22 @@ We provide the experimental results of our approximate algorithm on large datase
 	\vspace{-2mm}
 	\caption{\scriptsize Comparison with BFS and DFS.}
 	\label{fig:dbfs}
-	\vspace{-2mm}
+	\vspace{6mm}
 \end{figure*}
 
+% \clearpage
+\newpage
+\section{Quality}
+We show the quality of our approximation algorithm by comparing the results of top k of our approximate algorithm with the exact version, both run with a size bound of maximum 5 sized patterns. We take the output of the complete version as the ground truth for all the experiments. The following 3 experiments are done to show quality of our approximate version:
+% \newline
 
-% \spara{$\bullet$ Index Analysis} We provide the result of efficiency increase of our global index. The index strategy is more powerful if there are fewer distinct edge labels or the data graph is more dense, like {\em Yeast} and {\em DBLP}.
+\spara{Jaccard Coefficient.} We compare the patterns that we get in top-K in both the algorithms and report the fraction of pairs that we have in the approximate output which are there in the ground truth as well. The fraction comes out to be $1$ for all the datasets which means we get the exact same results as the exact version.
 
+\spara{Kendall's Tau.} This is a measure of relationships between ranked data and focusses on the ordering of the results. It gives a value between 0-1 where 0 is no relationship and 1 is perfect relationship. It is calculated as \[KT = \dfrac{C-D}{C+D}, C = |concordant\ pairs|, D = |disconcordant\ pairs|\] Concordant pairs are how many larger ranks are below a certain rank and disconcordant pairs are how many smaller ranks are below a certain rank. We keep $K-20$ and show results of varied $hops$ at different supports for $LastFM$ in Figure \ref{fig:lastfm_kt}.\\ 
 
-% \begin{figure}[t!]
-% \vspace{4mm}
-% \centering
-% \subfigure[{\scriptsize {\em Chemical} with {\sf Min-sup} = $10$, $k=50$}] {
-% \includegraphics[scale=0.17, angle=270]{img2/ni_chemical}
-% \label{fig:ni1}
-% }
-% \subfigure[{\scriptsize {\em Yeast} with {\sf Min-sup} = $200$, $k=50$}]  {
-% \includegraphics[scale=0.17, angle=270]{img2/ni_yeast}
-% \label{fig:ni2}
-% }
-% \subfigure[{\scriptsize {\em DBLP} with {\sf Min-sup} = $5000$, $k=50$}] {
-% \includegraphics[scale=0.17, angle=270]{img2/ni_dblp}
-% \label{fig:ni3}
-% }
-% \subfigure[{\scriptsize {\em LastFM} with {\sf Min-sup} = $200$, $k=50$}]  {
-% \includegraphics[scale=0.17, angle=270]{img2/ni_lastfm}
-% \label{fig:ni4}
-% }
-% \vspace{-2mm}
-% \caption{\scriptsize Figure for index analysis.}
-% \label{fig:ni}
-% \vspace{-2mm}
-% \end{figure}
+\spara{Percentage error in $\tau$ values.} This is a measure of the error in $\tau$ values introduced by the approximate version. We calculate the difference in the $\tau$ values for all the $top-K$ patterns common in the approximate and the exact set and report the mean error(in percentage). Figure \ref{fig:lastfm_error} shows this error at $K-20$ and varied $hops$ at different supports for $LastFM$.
 
-\eat{
-\begin{figure}[t!]
-\vspace{4mm}
-\centering
-\subfigure[{\scriptsize {\sf K}=$20$ in {\em LastFM}}] {
-\includegraphics[keepaspectratio,scale=0.24, angle=0]{img2/lastfm/lastfm_kt.pdf}
-\label{fig:lastfm_kt}
-}
-\subfigure[{\scriptsize {\sf K}=$20$ in {\em LastFM}}]  {
-\includegraphics[keepaspectratio,scale=0.24, angle=0]{img2/lastfm/lastfm_spread.pdf}
-\label{fig:lastfm_error}
-}
-\subfigure[{\scriptsize {\sf K}=$20$ in {\em Citeseer}}] {
-\includegraphics[keepaspectratio,scale=0.24, angle=0]{img2/citeseer/citeseer_kt.pdf}
-\label{fig:citeseer_kt}
-}
-\subfigure[{\scriptsize {\sf K}=$20$ in {\em Citeseer}}]  {
-\includegraphics[keepaspectratio,scale=0.24, angle=0]{img2/citeseer/citeseer_spread.pdf}
-\label{fig:citeseer_error}
-}
-\vspace{-2mm}
-\caption{\scriptsize Qualitative Analysis.}
-\label{fig:quality}
-\vspace{-2mm}
-\end{figure}
-}
+\par We report quality metrics for the datasets at $K-20$, $Hop-1$ in Table \ref{tab:quality}. The support for every dataset is taken as the minimum support for the support ranges chosen for that dataset for the experiments. 
 
 \begin{figure*}
 	\vspace{4mm}
@@ -882,26 +716,8 @@ We provide the experimental results of our approximate algorithm on large datase
 \end{figure*}
 
 
-
-
-
-
-
-
-\subsection{Quality}
-We show the quality of our approximation algorithm by comparing the results of top k of our approximate algorithm with the exact version, both run with a size bound of maximum 5 sized patterns. We take the output of the complete version as the ground truth for all the experiments. The following 3 experiments are done to show quality of our approximate version:
-% \newline
-
-\spara{Jaccard Coefficient.} We compare the patterns that we get in top-K in both the algorithms and report the fraction of pairs that we have in the approximate output which are there in the ground truth as well. The fraction comes out to be $1$ for all the datasets which means we get the exact same results as the exact version.
-
-\spara{Kendall's Tau.} This is a measure of relationships between ranked data and focusses on the ordering of the results. It gives a value between 0-1 where 0 is no relationship and 1 is perfect relationship. It is calculated as \[KT = \dfrac{C-D}{C+D}, C = |concordant\ pairs|, D = |disconcordant\ pairs|\] Concordant pairs are how many larger ranks are below a certain rank and disconcordant pairs are how many smaller ranks are below a certain rank. We keep $K-20$ and show results of varied $hops$ at different supports for $LastFM$ in Figure \ref{fig:lastfm_kt}.\\ 
-
-\spara{Percentage error in $\tau$ values.} This is a measure of the error in $\tau$ values introduced by the approximate version. We calculate the difference in the $\tau$ values for all the $top-K$ patterns common in the approximate and the exact set and report the mean error(in percentage). Figure \ref{fig:lastfm_error} shows this error at $K-20$ and varied $hops$ at different supports for $LastFM$.
-
-\par We report quality metrics for the datasets at $K-20$, $Hop-1$ in Table \ref{tab:quality}. The support for every dataset is taken as the minimum support for the support ranges chosen for that dataset for the experiments. 
-
 \begin{table}[tb!]
-	\vspace{-2mm}
+	\vspace{5mm}
 	\begin{center}
 		\vspace{-1mm}
 		\centering
