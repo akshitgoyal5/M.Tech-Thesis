@@ -12,12 +12,12 @@
 
 \begin{observation}
 	\label{ob:dfs}
-	\textcolor{red}{?}For highly (e.g., top-$k$) correlated subgraphs mining, generally a
+	\textcolor For highly (e.g., top-$k$) correlated subgraphs mining, generally a
 	breadth-first or a best-first exploration of the search space is more
 	efficient compared to a depth-first traversal of the search space.
 \end{observation}
 
-\textcolor{red}{?}Setting $k$ to infinity would enable us to mine all pairs of correlated subgraph
+\textcolor Setting $k$ to infinity would enable us to mine all pairs of correlated subgraph
 patterns. However, on the contrary, it is hard to control the value of {\sf
 Min-sup} to get the result of a particular $k$ of {\sf Top-$k$} correlated
 subgraphs. That is to say, the {\sf Min-Sup} problem can be transfered from {\sf
@@ -90,8 +90,9 @@ Our objective is to mine $k$ pairs of correlated subgraphs and guarantee that an
 A closer look at the properties mentioned in Section \ref{sec:characteristics} allows us to deduce the following: 
 assume $Q$ and $Q_j$ are two arbitrary frequent subgraphs of the data graph. 
 We denote $super(Q)$ as the set of all possible supergraphs of $Q$. Then, for all $Q'\in super(Q)$ the following conditions always hold:
-\begin{align*} \tau(Q',Q_j,h)\le \sigma(Q') \quad $(\textsc{Corollary to Lemma \ref{lemma:prune}})$\end{align*}
-\begin{align*} \sigma(Q')\le \sigma(Q) \quad \quad $(\textsc{downward-closure})$\end{align*}
+
+\begin{align*} \tau(Q',Q_j,h)\le \sigma(Q') \quad (\textsc{Corollary to Lemma \ref{lemma:prune}})\end{align*}
+\begin{align*} \sigma(Q')\le \sigma(Q) \quad \quad (\textsc{downward-closure})\end{align*}
 It is easy to get the following upperbound on $\tau(Q',Q_j,h)$ by combining the two conditions above:
 \begin{align*} \tau(Q',Q_j,h) \le \sigma(Q) \end{align*}
 Consider this upperbound: if $\sigma(Q)$ is lower than the least $\tau$ value in
@@ -632,7 +633,7 @@ It is more convenient to implement an efficient collection in a hierarchical str
 	% 	\label{fig:tree_structure5}
 	% }
 	\vspace{-2mm}
-	\caption{\scriptsize Figure \ref{fig:tree_structure0} is the subgraph pattern of $Q_1$, Figure \ref{fig:tree_structure2} is a replica of the occurrence of $Q_1$ in Figure \ref{fig:tree_structure1} without any backward edges (the dotted lines are the backward edges in $Q_1$). Figure \ref{fig:tree_structure4} is the same subgraph pattern $Q_2$ with Figure \ref{fig:tree_structure3}, with collection tree rooted at the group center $s_2$. Figure \ref{fig:tree_structure5} is the occurrence of $Q_2$ in data graph $G$.}
+	\caption{\scriptsize Figure \ref{fig:tree_structure3} is the subgraph pattern of $Q_1$, Figure \ref{fig:tree_structure5} is a replica of the occurrence of $Q_1$ in Figure \ref{fig:tree_structure3} without any backward edges. Figure \ref{fig:tree_structure4} is the same subgraph pattern $Q_2$ with Figure \ref{fig:tree_structure3}, with collection tree rooted at the group center $s_2$. Figure \ref{fig:tree_structure5} is the occurrence of $Q_2$ in data graph $G$.}
 	\label{fig:replica}
 	% \vspace{-5mm}
 \end{figure}

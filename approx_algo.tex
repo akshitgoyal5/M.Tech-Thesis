@@ -72,7 +72,7 @@ $(w,c)$, and (2) $w \in E_{c}$
 % correlation computation 
 
 Algorithm \ref{algo:approx-instances} is a recursive algorithm. In the general
-(recursive) case (lines??-??), it begins by invoking \textsc{NextQueryEdge}
+(recursive) case (lines 5-30), it begins by invoking \textsc{NextQueryEdge}
 which returns one edge at a time from $E(Q)$ in the order of the rooted $DFS\
 List$. Edge $e(p,c)$ thus returned connects vertices $p,c \in V(Q)$ such that
 $c\in children(p)$ as per the $DFS\ List$ and $c$ is the pattern vertex to be
