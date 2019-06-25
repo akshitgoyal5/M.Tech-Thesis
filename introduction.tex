@@ -143,9 +143,15 @@ To this end, we design a single-step, best-first exploration algorithm to detect
 coupled with efficient top-$k$ pruning and various optimization techniques.
 The main contributions of this thesis are as follows:
 \squishlist
-\item 
-\item
-\item
+\item We introduce a scheme for defining and computing the \emph{correlation} metric between
+isomorphisms of two subgraph patterns
+\item We introduce a novel data structure called the \textit{Replica} structure
+that offers a strategy to store all instances overcoming the space limitations of
+\textsc{GrowStore}.
+\item We propose an \textit{exact} backtracking algorithm that works on the \textit{Replica}
+structure to mine all ismorphisms of a pattern
+\item For scalability, we also propose an \textit{approximate} backtracking
+algorithm that approximately computes the \textit{replica} structure 
 \item We empirically demonstrate effectiveness and efficiency of our methods on real-life graphs,
 while also detailing three concrete case studies (Section \ref{sec:experiments}).
 \squishend
