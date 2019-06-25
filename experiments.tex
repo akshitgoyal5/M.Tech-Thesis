@@ -538,22 +538,22 @@ In figure \ref{fig:mem_comp}, we compare the memory footprint of \textsc{CSM-A} 
 \begin{figure*}
 	\vspace{-2mm}
 	\centering
-	\begin{subfigure}[b]{0.25\textwidth}
+	\begin{subfigure}[t]{0.25\textwidth}
 		\includegraphics[scale=0.24]{img2/lastfm/lastfm_h1.pdf}
 		\caption{\scriptsize {\sf Hop-$1$, K-$20$} in {\em LASTFM}}
 		\label{fig:lastfm_h1}
 	\end{subfigure}%
-	\begin{subfigure}[b]{0.25\textwidth}
+	\begin{subfigure}[t]{0.25\textwidth}
 		\includegraphics[scale=0.24]{img2/mico/mico_h1.pdf}
 		\caption{\scriptsize {\sf Hop-$1$, K-$20$} in {\em Mico}}
 		\label{fig:mico_h1}
 	\end{subfigure}%
-	\begin{subfigure}[b]{0.25\textwidth}
+	\begin{subfigure}[t]{0.25\textwidth}
 		\includegraphics[scale=0.24]{img2/coauthordblp/coauthordblp_h1.pdf}
 		\caption{\scriptsize {\sf Hop-$1$, K-$20$} in {\em DBLP Coauthor}}
 		\label{fig:coauthordblp_h1}
 	\end{subfigure}%
-	\begin{subfigure}[b]{0.25\textwidth}
+	\begin{subfigure}[t]{0.25\textwidth}
 		\includegraphics[scale=0.24]{img2/citationdblp/citationdblp_h1.pdf}
 		\caption{\scriptsize {\sf Hop-$1$, K-$20$} in {\em DBLP Citation}}
 		\label{fig:citationdblp_h1}
@@ -761,32 +761,32 @@ We provide the experimental results of our approximate algorithm on large datase
 \begin{figure*}
 	\vspace{4mm}
 	\centering
-	\begin{subfigure}[b]{0.25\textwidth}
+	\begin{subfigure}[t]{0.25\textwidth}
 		\includegraphics[keepaspectratio,scale=0.24, angle=0]{img2/lastfm/lastfm_bfsdfs_pop.pdf}
 		\caption{\scriptsize {\sf K}=$20$, $Hop=1$ in {\em LastFM}}
 		\label{fig:lastfm_bfsdfs_pop}
 	\end{subfigure}%
-	\begin{subfigure}[b]{0.25\textwidth}
+	\begin{subfigure}[t]{0.25\textwidth}
 		\includegraphics[keepaspectratio,scale=0.24, angle=0]{img2/lastfm/lastfm_bfsdfs_pop_k.pdf}
 		\caption{\scriptsize {\sf Sup}=$1200$, $Hop=1$ in {\em LastFM}}
 		\label{fig:lastfm_bfsdfs_pop_k}
 	\end{subfigure}%
-	\begin{subfigure}[b]{0.25\textwidth}
+	\begin{subfigure}[t]{0.25\textwidth}
 		\includegraphics[keepaspectratio,scale=0.24, angle=0]{img2/chemical/chemical_bfsdfs_pop.pdf}
 		\caption{\scriptsize {\sf K}=$20$, $Hop=1$ in {\em Chemical}}
 		\label{fig:chemical_bfsdfs_pop}
 	\end{subfigure}%
-	\begin{subfigure}[b]{0.25\textwidth}
+	\begin{subfigure}[t]{0.25\textwidth}
 		\includegraphics[keepaspectratio,scale=0.24, angle=0]{img2/chemical/chemical_bfsdfs_pop_k.pdf}
 		\caption{\scriptsize{\sf Sup}=$10$, $Hop=1$ in {\em Chemical}}
 		\label{fig:chemical_bfsdfs_pop_k}
 	\end{subfigure}
-	\begin{subfigure}[b]{0.25\textwidth}
+	\begin{subfigure}[t]{0.25\textwidth}
 		\includegraphics[keepaspectratio,scale=0.24, angle=0]{img2/citationdblp/citationdblp_bfsdfs_pop.pdf}
 		\caption{\scriptsize {\sf K}=$20$, $Hop=1$ in {\em DBLP Citation}}
 		\label{fig:citation_bfsdfs_pop}
 	\end{subfigure}%
-	\begin{subfigure}[b]{0.25\textwidth}
+	\begin{subfigure}[t]{0.25\textwidth}
 		\includegraphics[keepaspectratio,scale=0.24, angle=0]{img2/citationdblp/citationdblp_bfsdfs_pop_k.pdf}}
 		\caption{\scriptsize{\sf Sup}=$10$, $Hop=1$ in {\em DBLP Citation}}
 		\label{fig:citation_bfsdfs_pop_k}
@@ -925,7 +925,7 @@ We show the quality of our approximation algorithm by comparing the results of t
 	\vspace{-4mm}
 \end{table}
 
-\subsection{Interpretbility}
+% \subsection{Interpretbility}
 
 % \spara{$\bullet$ Further Analysis} We provide some further analysis. This part contains the result of the optimization of changing collection tree root in Section \ref{subsubsec:recursive}, and the time cost we spend to avoid the subgraph/supergraph correlations. According to the experimental result, the time we use to prune the not interesting correlations is about 10\% of the total time. Besides, the root changing optimization in Section \ref{subsubsec:recursive} increase the time efficiency by 10\%.
 

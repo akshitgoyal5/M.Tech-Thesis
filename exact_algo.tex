@@ -1,7 +1,7 @@
-\section{Exact Algorithm}
+\chapter{Exact Algorithm}
 \label{sec:exact_algo}
 
-\subsection{Overview}
+\section{Overview}
 \label{subsec:exact_algo_overview}
 
 \begin{observation}
@@ -26,7 +26,7 @@ following sections.
 
 %% \setlength{\parskip}{0.3em}
 % \spara{\raggedleft \textbf{Pattern Search Tree.}} 
-\subsubsection{Search Tree}
+\subsection{Search Tree}
 \label{subsubsec:exact_algo_searchtree}
 All operations including correlation computation and subgraph pattern extension
 are performed on patterns following an exploration order on a \textit{search tree}.
@@ -68,7 +68,7 @@ $\sigma(R)\ge$ {\sf Min-Sup}, branch $T$ at $Q$ to include $R$ in $Leaf(T)$.
 % denoted as $corIndex(Q_i)=b$, which means $Q_i$ is the $b$-th subgraph in $T$
 % which and we put $Q_i$ into $Cor(T)$, i.e. $Cor(T)=Cor(T)\cap Q_i$.
 
-\subsubsection{Best-first Search}
+\subsection{Best-first Search}
 \label{subsubsec:exact_algo_bestfs}
 Observation \ref{ob:frequency} suggests that faster convergence of the algorithm
 could be expected if a subgraph pattern having a higher support is
@@ -84,7 +84,7 @@ then $Q_k$ has the priorty to be operated and extended.
  note that as described in step $4$ of the algorithm outline in Section \ref{subsubsec:exact_algo_searchtree}, we do not consider 
  infrequent patterns in $Leaf(T)$, therefore, \textit{Search Queue} only orders frequent patterns. 
 
-\subsubsection{Best-first Termination Criteria}
+\subsection{Best-first Termination Criteria}
 \label{subsubsec:exact_algo_ceasing}
 Our objective is to mine $k$ pairs of correlated subgraphs and guarantee that any other pair of subgraphs cannot have a higher correlation $(\tau)$ than any pair in such a {\sf Top-$k$} list. 
 A closer look at the properties mentioned in Section \ref{sec:characteristics} allows us to deduce the following: 
@@ -143,7 +143,7 @@ subgraphs discovered along with $\tau$ values.
 
 
 
-\subsection{Replica-based Graph Instance Storage}
+\section{Replica-based Graph Instance Storage}
 \label{subsec:replica-storage}
 As discussed in Section \ref{sec:problem}, computing $\sigma$ and $\tau$
 values requires knowledge of a pattern's \emph
@@ -153,7 +153,7 @@ prohibitively large to store for each pattern so methods like \textsc{GrowStore}
 scope. In this section, we describe an elegant approach for performing subgraph
 isomorphism using the \textbf{Replica Structure}.
  
-\subsubsection{Replica Structure}
+\subsection{Replica Structure}
 \label{subsubsec:replica-ds}
  Considering the large amount of overlaps of instances in dense graphs,
  we use a novel yet simple data structure to "store" all instances of a subgraph
@@ -234,7 +234,7 @@ these indexes for computational gains.
 % identifications, and $R(Q)=(R_1(Q), R_2(Q), ..., R_{|V_Q|}(Q))$.
 % \\3) For each element $v\in R_i(Q)$, there is a record of all the other vertices which $v$ is connected to in the occurrences of $Q$.
 
-\subsubsection{Generation of a Replica Graph}
+\subsection{Generation of a Replica Graph}
 \label{subsubsec:replica-gen}
 Algorithms 1 and 2 together describe the complete procedure to construct the
 \emph{replica} structure for a subgraph pattern, henceforth referred to as
@@ -318,8 +318,7 @@ child.
 	% \end{algorithmic}
 \end{algorithm}
 
-Algorithm 1 essentially describes a backtracking procedure
-\textcolor{red}{[refX:D.Knuth]} to find every instance (also referred to as
+Algorithm 1 essentially describes a backtracking procedure to find every instance (also referred to as
 \emph{isomorphism} or \emph{mapping}) of the child pattern in the data graph $G$
 using the mappings of the parent pattern and thus obtain its \emph{replica}. The
 algorithm begins with a depth-first search ({\sf DFS}) procedure (line 1)
@@ -414,13 +413,13 @@ the single large graph since we can directly get $\sigma(R)$ when we record the
 \textit{replica(R)} just by counting all the sizes of the $Mappings(v)$, where $v\in
 V(Q)$.
 
-\textcolor{red}{#to be added: !replica(R) can be deleted after operate(R)-memory benefit}
+% \textcolor{red}{#to be added: !replica(R) can be deleted after operate(R)-memory benefit}
 
-\subsubsection{\textcolor{red}{?}Indexing to Facilitate Replica Deletion}
-\label{subsubsec:replica-indexing}
+% \subsubsection{\textcolor{red}{?}Indexing to Facilitate Replica Deletion}
+% \label{subsubsec:replica-indexing}
 
 
-\begin{figure}
+\begin{figure*}
     % \captionsetup[subfigure]{oneside, margin={0.4cm,0cm}}
     % \captionsetup[subfigure]{labelfont=normalfont,textfont=normalfont,singlelinecheck=on,justification=raggedright, skip=20pt}
     %, skip=-10pt}
@@ -430,7 +429,7 @@ V(Q)$.
             \caption{}
 			\label{fig:exactq}
     \end{subfigure}%
-    \hspace*{\fill}
+    % \hspace*{\fill}
     % \captionsetup[subfigure]{labelfont=bf,textfont=normalfont,singlelinecheck=on,justification=raggedright, skip=-5pt}
 	\begin{subfigure}[b]{0.35\textwidth}
             % \centering
@@ -439,7 +438,6 @@ V(Q)$.
             \caption{}
 			\label{fig:exactrepq}
 	\end{subfigure}
-
 	\captionsetup[subfigure]{skip=-2pt}
 	\begin{subfigure}[b]{0.15\textwidth}
 		% \centering
@@ -447,7 +445,7 @@ V(Q)$.
 		\caption{}
 		\label{fig:exactr}
 	\end{subfigure}%
-	\hspace*{\fill}
+	% \hspace*{\fill}
 	\begin{subfigure}[b]{0.35\textwidth}
 		% \centering
 		\includegraphics[scale=0.6]{img_ex/Exact-rep(R).pdf}
@@ -457,10 +455,10 @@ V(Q)$.
 		\label{fig:exactrepr}
 	\end{subfigure}
 	% \captionsetup[figure]{skip=200pt}
-    \vspace{-1.75\baselineskip}
+    \vspace{0.5\baselineskip}
 	\caption{\textup{(a)} parent $Q$ \textup{(b)} $replica(Q)$ \textup{(c)} child $R$ showing edge extension $(S_0, S_3)$ \textup{(d)} $replica(R)$}\label{fig:exactex}
-	\vspace{-0.75\baselineskip}
-\end{figure}
+	\vspace{0.75\baselineskip}
+\end{figure*}
 
 \begin{exple}	
 	In Figure \ref{fig:exactex}, originally \emph{Q} and \emph{replica(Q)} are
@@ -475,9 +473,9 @@ V(Q)$.
 	would result in \emph{replica(R)} as shown in Fig.\ref{fig:exactrepr}
 \end{exple}
 
-\subsection{Subgraph Extension}
+\section{Subgraph Extension}
 \label{subsec:subgraph-ext}
-\subsubsection{Extension Rule}
+\subsection{Extension Rule}
 We assign pattern vertex indices for all $V_i\in V(Q)$ to identify their order of discovery.
 \begin{defn}[Vertices Subscripting] For all $Q\in T$, apart from vertex
 	identification $V_i$, we use another convention to label the vertices in $Q$
@@ -529,7 +527,7 @@ V(replica(Q))$ for every $v\in rmpath($Q$)$ and attempts to extend $Q$ using a
 single-edge extension. The set of all valid candidate edge extensions, $Ex(Q)$ thus
 obtained is returned. 
 
-\subsubsection{Duplicated Subgraph Prunning}
+\subsection{Duplicated Subgraph Prunning}
 To avoid the duplicated subgraph judgement, we take the advantage of the DFS
 code, and the minimum DFS code in gSpan\cite{YH02}, whenever a subgraph is
 constructed we compute its minimum DFS code, denoted as $DFS\ Code(Q)$.
@@ -539,12 +537,12 @@ discover. When a subgraph $Q$ is discovered, we perform a lookup for $DFS\ Code(
 dictionary. If $DFS$ $Code(Q)$ $\in$ $\mathbb{D}$, then $Q$ must have been discovered before,
 so we prune $Q$.
 
-\textcolor{red}{completeness theorem pending}
+% \textcolor{red}{completeness theorem pending}
 
-\subsection{Correlation Computation}
+\section{Correlation Computation}
 \label{subsec:corrcomp}
 
-\subsubsection{Global Index}
+\subsection{Global Index}
 \label{subsec:global-index}
 
 We use a global index to record all the distance information. Each vertex of the data graph stores two catogories of distance information.
@@ -557,7 +555,7 @@ We use a global index to record all the distance information. Each vertex of the
 \squishend
 With the global index acquired before the search, there is no need to consider anything about the distance (hop-constraints) in the search steps. The detail of the maintenance of these two indices is specified in Section \ref{subsec:calculating}.
 
-\subsubsection{Calculating Correlation}\label{subsec:calculating}
+\subsection{Calculating Correlation}\label{subsec:calculating}
 \begin{defn}[Positive Instance Group]
 	Given two subgraphs $Q_1$ and $Q_2$ in the input graph $G$, their instance-groups
 	$\mathbb{I'}=\{I'_1,I'_2,\ldots,I'_{\sigma(Q_1)}\}$ and $\mathbb{J'}=\{J'_1,J'_2,\ldots,J'_{\sigma(Q_2)}\}$,
@@ -575,7 +573,7 @@ With the global index acquired before the search, there is no need to consider a
 \end{thrm}
 The process of correlation calculation could be considered as a {\bf collection}. Suppose we are calculating the correlation of $Q_1$, i.e. $\tau(Q_1,Q_k,h)$, for all $Q_k\in Cor(T)$. Taking advantage of the global index in Section \ref{subsec:global-index}, by traversing all the vertices in a group can we know the correlation $\tau()$ of all the $v$. We collect these sets one-by-one and finally we could know all the correlation of $Q_1$, i.e. $\tau(Q_1,Q_k,h)$, for all $Q_k\in Cor(T)$.
 
-\subsubsection{Replica Structure Transformation}
+\subsection{Replica Structure Transformation}
 It is more convenient to implement an efficient collection in a hierarchical structure, like tree. As a result, to initialize a collection, we first transform the search space of the collection to a particular tree.
 \par Prior to the detailed operations, we first define the group center and the collection tree of a pattern.
 \begin{defn}[Group Center and Center Subscript]
@@ -633,14 +631,14 @@ It is more convenient to implement an efficient collection in a hierarchical str
 	% 	\includegraphics[scale=0.30]{images/tree_structure5}
 	% 	\label{fig:tree_structure5}
 	% }
-	\vspace{-8mm}
+	\vspace{-2mm}
 	\caption{\scriptsize Figure \ref{fig:tree_structure0} is the subgraph pattern of $Q_1$, Figure \ref{fig:tree_structure2} is a replica of the occurrence of $Q_1$ in Figure \ref{fig:tree_structure1} without any backward edges (the dotted lines are the backward edges in $Q_1$). Figure \ref{fig:tree_structure4} is the same subgraph pattern $Q_2$ with Figure \ref{fig:tree_structure3}, with collection tree rooted at the group center $s_2$. Figure \ref{fig:tree_structure5} is the occurrence of $Q_2$ in data graph $G$.}
 	\label{fig:replica}
 	\vspace{-5mm}
 \end{figure}
 % }
-~\newline
-~\newline
+% ~\newline
+% ~\newline
 
 %
 Then, we consider the group center as the root of the tree. During the collection, the collection is initiated from the root of the tree.
@@ -723,7 +721,7 @@ Algorithm 4 summarises the steps described above.
 % \end{exple}
 
 
-\subsubsection{Avoiding Subgraph/Supergraph Correlation}\label{subsec:avoiding}
+\subsection{Avoiding Subgraph/Supergraph Correlation}\label{subsec:avoiding}
 As we mentioned in Section \ref{sec:problem}, we do not want to consider the correlation of $Q_1,Q_2$ if $Q_1$ is a subgraph or a supergraph of $Q_2$. If $Q_2$ is extended from $Q_1$, we could easily know $Q_2$ is the supergraph of $Q_1$ and skip their correlation calculation. However, there are more troublesome conditions.
 
 
@@ -755,12 +753,12 @@ $Q_2$. As a result, if $Q_1$ can extend to $Q_2$, then we operate
 $SubRec(Q_2)=SubRec(Q_2)\cap Q_1\cap SubRec(Q_1)$. As {\sf Op($Q$)} is
 occurring, if $Q_i\in SubRec(Q)$, we skip $\tau(Q,Q_i,h)$.
 
-\subsection{Mining Algorithm}
+\section{Mining Algorithm}
 \label{subsec:miningalgo}
 The complete mining algorithm consists of an initialization step and the search
 algorithm to compute top-\textit{k} pairs of correlated subgraph patterns. The
 details of these procedures are described in the following subsections.
-\subsubsection{Initialization}
+\subsection{Initialization}
 \label{subsec:initialization}
 Algorithm \ref{algo:initialization} specifies the step-by-step operations of the
 initialization procedure.
@@ -804,7 +802,7 @@ hereafter and doing so accelerates the search procedure.
 % from the data graph (line ) because they are useless after initialization and
 % removing them could accelerate the search.
 
-\subsubsection{Search Steps}
+\subsection{Search Steps}
 \label{subsec:search-steps}
 Following the initialization, the search algorithm as specified in
 Algorithm~\ref{algo:searchsteps} is executed.
